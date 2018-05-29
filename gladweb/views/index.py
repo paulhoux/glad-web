@@ -100,7 +100,8 @@ def glad_generate():
     # this function happens to strip underscores...
     directory = tempfile.mkdtemp(dir=current_app.config['TEMP'], suffix='glad')
     os.chmod(directory, 0o750)
-    with generator_cls(directory, spec, apis, extensions, loader, local_files=local_files, omit_khrplatform=omitkhr) as generator:
+    with generator_cls(directory, spec, apis, extensions, loader,
+                       local_files=local_files, omit_khrplatform=omitkhr, latest_spec=True) as generator:
         generator.generate()
 
     zip_path = os.path.join(directory, 'glad.zip')
